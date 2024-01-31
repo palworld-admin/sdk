@@ -56,5 +56,24 @@ namespace palworld
 		{
 			hooks::static_construct_object::post_callbacks.push_back(callback);
 		}
+
+		// Reference:
+		// https://stackoverflow.com/a/3999597
+		static std::string to_utf8(const std::wstring& wide_string)
+		{
+			if (wide_string.empty()) return std::string();
+
+			const int size_needed = WideCharToMultiByte(CP_UTF8,
+			                                            0, &wide_string[0], (int)wide_string.size(),
+			                                            nullptr,
+			                                            0, nullptr, nullptr);
+			std::string strTo(size_needed, 0);
+			WideCharToMultiByte(CP_UTF8, 0, &wide_string[0],
+			                    (int)wide_string.size(), &strTo[0],
+			                    size_needed, nullptr,
+			                    nullptr);
+
+			return strTo;
+		}
 	};
 }
