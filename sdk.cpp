@@ -44,7 +44,7 @@ palworld::Sdk::Sdk(ConfigFile* config)
 
 	hooks::broadcast_msg_addr = ue::utils::pattern_scan(
 		ue::memory::module,
-		"40 55 56 41 57 48 8D 6C 24 B9 48 81 EC D0 00 00 00 48 8B F2");
+		"40 55 56 41 ? 48 8D 6C 24 B9 48 81 EC ? 00 00 00 48 8B F2");
 	LOG(_("BroadcastMsg: 0x%llX"),
 	    hooks::broadcast_msg_addr);
 }
